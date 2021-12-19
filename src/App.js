@@ -1,13 +1,16 @@
 import React from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import EscolhaFilme from "./EscolhaFilme"
-import Header from "./Header"
 
 export default function App(){
   return (
-    <>
-      <Header />
-      <EscolhaFilme/>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<EscolhaFilme />}></Route>
+        <Route></Route>
+      </Routes>
+    </BrowserRouter>
+    
   )
 }
