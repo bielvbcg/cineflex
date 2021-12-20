@@ -1,6 +1,6 @@
 import React from "react"
 import { useEffect , useState } from 'react';
-import { useParams } from "react-router-dom"
+import { useParams , Link } from "react-router-dom"
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -24,21 +24,32 @@ export default function EscolhaSessao(){
     <>
       <Header></Header>
       <Titulo>Selecione o horário</Titulo>
+
       <Sessoes>
+
         {days && days.map( day => (
             <Dia>
               <span>{day.weekday} - {day.date}</span>
               <div>
-                {day.showtimes.map( sessao => <button>{sessao.name}</button> )}
+                {day.showtimes.map( sessao => (
+                    <Sessao>
+                  <Link to={`/assentos/${sessao.id}`}>
+                      {sessao.name}
+                  </Link>
+                    </Sessao>
+                  ))}
               </div>
             </Dia>
           ))}
+
       </Sessoes>
+
       {sessoes && 
       <Footer >
         <img src={sessoes.posterURL} alt={sessoes.title} />
         <span>{sessoes.title}</span>
       </Footer>}
+
     </>
   )
 }
@@ -124,4 +135,8 @@ const Footer = styled.div`
 
     margin-left: 14px;
   }
+`
+
+const Sessao = styled.button`
+
 `

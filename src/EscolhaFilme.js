@@ -12,10 +12,12 @@ export default function EscolhaFilme(){
   useEffect(() => {
     const requisicao = axios.get("https://mock-api.driven.com.br/api/v4/cineflex/movies")
 
-    requisicao.then( resposta => setFilmes(resposta.data))
+    requisicao.then( resposta => {
+      setFilmes(resposta.data)
+    })
     
-    console.log(filmes)
   }, [])
+  filmes && console.log(filmes)
 
   return (
     <>
@@ -24,7 +26,7 @@ export default function EscolhaFilme(){
       <Filmes>
         {filmes.map( filme => {
           return (
-            <Link to={`/escolhaSessao/${filme.id}`}>
+            <Link to={`/sessoes/${filme.id}`}>
               <Filme>
                 <img src={filme.posterURL} alt={filme.title}></img>
               </Filme>
