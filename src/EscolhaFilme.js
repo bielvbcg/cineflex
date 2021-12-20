@@ -2,6 +2,7 @@ import React from "react"
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import Header from "./Header"
 
@@ -23,9 +24,11 @@ export default function EscolhaFilme(){
       <Filmes>
         {filmes.map( filme => {
           return (
-            <Filme>
-             <img src={filme.posterURL}></img>
-            </Filme>
+            <Link to={`/escolhaSessao/${filme.id}`}>
+              <Filme>
+                <img src={filme.posterURL} alt={filme.title}></img>
+              </Filme>
+            </Link>
         )})}</Filmes>
     </>
 )}
@@ -45,10 +48,12 @@ const Filmes = styled.div`
   align-items: center;
 
   gap: 27px 46px;
-
 `
 
 const Filme = styled.div`
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 3px solid white;
+
   img {
     width: 129px;
     height: 193px;
